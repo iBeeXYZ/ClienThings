@@ -2,22 +2,22 @@
 **ClienThings** is a project to simulate more things client-side.
 For example, if you eat food, the animation only ends when the server indicates it will.
 This mod fixes that and therefore compensates for the ping.
+You can use ClienThings on your server to find out if a player is using **ClienThings**.
 
 Currently this mod compensates for :
 - Consumables (90%)
 - Elytras (95%)
+- Firework rocket (100%)
+- Cooldowns (100%)
 
 Coming Soon™ :
-- Cooldowns
-- Fall damage
 - Interfaces
-- End Crystal Placement (Use [Marlow Crystal Optimizer](https://modrinth.com/mod/marlow-crystal-optimizer) in the meantime)
-- Knockback (in some case)
+- End Crystal Placement
 - Game mode change
 - Sneaking state
-- Firework rocket
 - Potion Effects
 - Tchat
+- Sounds
 - Crafting
 - Weapons (Bow/Crossbow, etc.)
 - Note block
@@ -25,9 +25,9 @@ Coming Soon™ :
 - Swap Items In Hands
 - Pick Block
 - Scaffolding
-- Splash Potion (maybe)
+- Knockback (in some case)
+- Fall damage (maybe)
 - Wind charge (maybe)
-- Enderpearl (maybe)
 
 
 <details>
@@ -35,17 +35,26 @@ Coming Soon™ :
   
 ```
 #consumables: Enables or disables consumable prediction
-#consumables_MaxDistance: Maximum distance (in blocks) between the client and the server for the end-of-consumption sound(s) to be ignored.
-#consumables_MaxTime: Maximum time (in ms) the server has to play the end-of-consumption sound(s) to be ignored.
+#consumables_MaxDistance: Maximum distance (in blocks) between the client and the server for the end-of-consumption sound(s) to be ignored
+#consumables_MaxTime: Maximum time (in ms) the server has to play the end-of-consumption sound(s) to be ignored
+#cooldowns: Enables or disables cooldowns prediction
 #debugMode: Debug mode (for developers)
 #elytras: Enables or disables elytras prediction
+#firework: Enables or disables firework prediction
+#firework_MaxDistance: Maximum distance (in blocks) between the client and the server for the firework sound to be ignored
+#firework_MaxTime: Maximum time (in ms) the server has to delete the firework
+#optout: Enables or disables the opt-out
 
 consumables=true
-consumables_MaxDistance=0.2
+consumables_MaxDistance=0.3
 consumables_MaxTime=3200
+cooldowns=true
 debugMode=false
 elytras=true
-
+firework=true
+firework_MaxDistance=2.0
+firework_MaxTime=3200
+optout=true
 ```
 
 </details>
@@ -60,4 +69,4 @@ This mod may be detected as a cheat by some anti-cheats. Use with caution on pub
 If you use this mod, you might be interested by [No Bugs](https://modrinth.com/project/no-bugs)
 
 ## Compatibility
-**ClienThings** should work on any client.
+**ClienThings** should work on any client and server.
