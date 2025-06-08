@@ -1,0 +1,30 @@
+{
+	"required": true,
+	"compatibilityLevel": "JAVA_21",
+	"package": "fr.solmey.clienthings.mixin",
+	"mixins": [],
+	"client": [
+		"consumables.ClientPlayerEntityMixin",
+		"consumables.ClientPlayNetworkHandlerMixin",
+		"consumables.LivingEntityInvoker",
+
+		"cooldowns.ClientPlayNetworkHandlerMixin",
+		
+		"elytras.LivingEntityMixin",
+		"elytras.ClientPlayNetworkHandlerMixin",
+		"elytras.ClientPlayNetworkHandlerMixinGameJoin",
+
+		"firework.FireworkRocketItemMixin",
+		"firework.FireworkRocketEntityAccessor",
+		"firework.FireworkRocketEntityMixin",
+		"firework.ClientPlayNetworkHandlerMixin",
+
+		"optout.ClientPlayNetworkHandlerMixin"
+	],
+	"server": [
+		"optout.ServerPlayNetworkHandlerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
