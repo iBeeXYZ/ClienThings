@@ -10,6 +10,9 @@ public interface FireworkRocketEntityAccessor {
     @Accessor("life")
     int getLife();
 
+    @Accessor("life")
+    void setLife(int life);
+
     @Accessor("lifeTime")
     int getLifeTime();
 }

@@ -9,17 +9,34 @@
 		"consumables.LivingEntityInvoker",
 
 		"cooldowns.ClientPlayNetworkHandlerMixin",
+
+		"crystals.EndCrystalItemMixin",
+		"crystals.ClientPlayerEntityMixin",
+		"crystals.ClientPlayNetworkHandlerMixin",
+		"crystals.ClientPlayNetworkHandlerAccessor",
+		"crystals.EntityMixin",
+		"crystals.EntityAccessor",
+		"crystals.LivingEntityAccessor",
+		"crystals.PlayerEntityMixin",
+		"crystals.MinecraftClientAccessor",
+
+		"debug.Debug",
 		
-		"elytras.LivingEntityMixin",
+		"elytras.ClientPlayerEntityMixin",
 		"elytras.ClientPlayNetworkHandlerMixin",
-		"elytras.ClientPlayNetworkHandlerMixinGameJoin",
+		"elytras.EntityAccessor",
+		"elytras.LivingEntityAccessor",
+		"elytras.LivingEntityMixin",
+		"elytras.MinecraftClientMixin",
 
 		"firework.FireworkRocketItemMixin",
 		"firework.FireworkRocketEntityAccessor",
 		"firework.FireworkRocketEntityMixin",
 		"firework.ClientPlayNetworkHandlerMixin",
 
-		"optout.ClientPlayNetworkHandlerMixin"
+		"optout.ClientPlayNetworkHandlerMixin",
+
+		"pose.ClientPlayNetworkHandlerMixin"
 	],
 	"server": [
 		"optout.ServerPlayNetworkHandlerMixin"

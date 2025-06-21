@@ -2,10 +2,14 @@ package fr.solmey.clienthings.mixin.consumables;
 
 import net.minecraft.client.network.ClientPlayerEntity;
 
-import fr.solmey.clienthings.util.Sounds;
 import fr.solmey.clienthings.config.Config;
+import fr.solmey.clienthings.util.Consumables;
+import fr.solmey.clienthings.util.Sounds;
 
 import java.util.List;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.Consumable;
 import net.minecraft.component.type.ConsumableComponent;
@@ -27,6 +31,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -40,11 +45,12 @@ public class ClientPlayerEntityMixin {
 	private void tick(CallbackInfo info) {
 		if (Config.consumables) {
 			ClientPlayerEntity player = (ClientPlayerEntity)(Object) this;
-
+			ClientWorld world = (ClientWorld)player.getWorld();
 			ItemStack itemStack = player.getActiveItem();
 			ConsumableComponent consumableComponent = itemStack.get(DataComponentTypes.CONSUMABLE);
 
 			if(player.getItemUseTimeLeft() <= 0 && consumableComponent != null && itemStack != null) {
+				Consumables.set(System.currentTimeMillis());
 
 				SoundEvent finishSound = null;
 				for (ConsumeEffect effect : consumableComponent.onConsumeEffects()) {
@@ -52,7 +58,7 @@ public class ClientPlayerEntityMixin {
 						finishSound = soundEffect.sound().value();
 					}
 					if (!(effect instanceof TeleportRandomlyConsumeEffect)) {
-						effect.onConsume(player.getWorld(), itemStack, player);
+						effect.onConsume(world, itemStack, player);
 					}
 				}
 
@@ -60,13 +66,15 @@ public class ClientPlayerEntityMixin {
 				// https://bugs.mojang.com/browse/MC-188359 btw
 				// https://report.bugs.mojang.com/servicedesk/customer/portal/2/MC-188359
 				Random random = player.getRandom();
-				player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), consumableComponent.sound().value(), SoundCategory.NEUTRAL, 1.0F, random.nextTriangular(1.0F, 0.4F));
+
+				
+				world.playSound(player, player.getX(), player.getY(), player.getZ(), consumableComponent.sound().value(), SoundCategory.NEUTRAL, 1.0F, random.nextTriangular(1.0F, 0.4F));
 				Sounds.set(System.currentTimeMillis(), player.getX(), player.getY(), player.getZ(), consumableComponent.sound().value(), Sounds.CONSUMABLES);
 				if(consumableComponent.useAction() == UseAction.EAT || itemStack.getItem() == Items.HONEY_BOTTLE)
-					player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, MathHelper.nextBetween(random, 0.9F, 1.0F));
+					world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, MathHelper.nextBetween(random, 0.9F, 1.0F));
 					Sounds.set(System.currentTimeMillis(), player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_BURP, Sounds.CONSUMABLES);
 				if(finishSound != null) {
-					player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), finishSound, player.getSoundCategory(), 1.0F, 1.0F);
+					world.playSound(player, player.getX(), player.getY(), player.getZ(), finishSound, player.getSoundCategory(), 1.0F, 1.0F);
 					Sounds.set(System.currentTimeMillis(), player.getX(), player.getY(), player.getZ(), finishSound, Sounds.CONSUMABLES);
 				}
 

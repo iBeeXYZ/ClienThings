@@ -2,9 +2,10 @@ package fr.solmey.clienthings.mixin.firework;
 
 import net.minecraft.client.network.ClientPlayerEntity;
 
-import fr.solmey.clienthings.util.Firework;
+import fr.solmey.clienthings.util.Entities;
 
 import net.minecraft.entity.projectile.FireworkRocketEntity;
+import net.minecraft.entity.Entity;
 
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,6 +18,8 @@ public class FireworkRocketEntityMixin {
 	@Inject(at = @At("HEAD"), method = "tick")
 	private void tick(CallbackInfo info) {
 		FireworkRocketEntity fireworkEntity = (FireworkRocketEntity)(Object) this;
-		Firework.tick(fireworkEntity);
+        FireworkRocketEntityAccessor accessor = (FireworkRocketEntityAccessor) fireworkEntity;
+        if(accessor.getLife() > accessor.getLifeTime() && accessor.getLifeTime() != 0)
+        	Entities.remove(fireworkEntity, Entity.RemovalReason.DISCARDED); //.discard();   fireworkEntity.explodeAndRemove(world); in vanilla but doesn't work with
 	}
 }

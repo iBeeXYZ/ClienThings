@@ -3,7 +3,7 @@ package fr.solmey.clienthings.mixin.firework;
 import net.minecraft.item.FireworkRocketItem;
 
 import fr.solmey.clienthings.config.Config;
-import fr.solmey.clienthings.util.Firework;
+import fr.solmey.clienthings.util.Entities;
 
 import fr.solmey.clienthings.util.Sounds;
 import net.minecraft.util.ActionResult;
@@ -37,16 +37,17 @@ class FireworkRocketItemMixin {
         ItemStack itemStack = user.getStackInHand(hand);
         ClientWorld clientWorld = (ClientWorld) user.getWorld();
         ProjectileEntity firework = new FireworkRocketEntity(world, itemStack, user);
+        ProjectileEntity initialFirework = new FireworkRocketEntity(world, itemStack, user);
         FireworkRocketEntity fireworkEntity = (FireworkRocketEntity) firework;
 
-        itemStack.decrementUnlessCreative(1, user);
-
+        
         clientWorld.addEntity(firework);
-        //Firework.set(System.currentTimeMillis(), firework); //For ticking client-side with the original UUID
-        Firework.set(System.currentTimeMillis(), new FireworkRocketEntity(world, itemStack, user)); //For cancel the EntitySpawnS2CPacket
-
+        Entities.set(System.currentTimeMillis(), firework, initialFirework, Entities.FAKE); //For cancel the EntitySpawnS2CPacket
+                
         fireworkEntity.getWorld().playSound(user, fireworkEntity.getX(), fireworkEntity.getY(), fireworkEntity.getZ(), SoundEvents.ENTITY_FIREWORK_ROCKET_LAUNCH, SoundCategory.AMBIENT, 3.0F, 1.0F);
         Sounds.set(System.currentTimeMillis(), fireworkEntity.getX(), fireworkEntity.getY(), fireworkEntity.getZ(), SoundEvents.ENTITY_FIREWORK_ROCKET_LAUNCH, Sounds.FIREWORK);
+
+        itemStack.decrementUnlessCreative(1, user);
 
         return ActionResult.SUCCESS;
 		  }

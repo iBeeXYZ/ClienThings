@@ -4,7 +4,7 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 
 import fr.solmey.clienthings.config.Config;
 import fr.solmey.clienthings.util.Sounds;
-import fr.solmey.clienthings.util.Firework;
+import fr.solmey.clienthings.util.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -28,7 +28,7 @@ public class ClientPlayNetworkHandlerMixin {
 
   @Inject(method = "onEntitySpawn", at = @At("HEAD"), cancellable = true)
   private void onEntity(EntitySpawnS2CPacket packet, CallbackInfo info) {
-    if (Config.firework && Firework.needToCancel(packet))
+    if (Config.firework && Entities.needToCancel(packet))
       info.cancel();
   }
 }

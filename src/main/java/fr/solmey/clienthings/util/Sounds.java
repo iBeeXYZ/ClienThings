@@ -29,7 +29,7 @@ public class Sounds {
         category[cursor] = _category;
     }
 
-    private static void clear() {
+    public static void clear() {
        for(int i = 0; i < 256 ; i++) {
             double MaxTime;
             switch(category[i]) {
@@ -56,28 +56,30 @@ public class Sounds {
         for(int i = 0; i < 256 ; i++)
             if(timestamps[i] >= timestamps[cursor])
                 cursor = i;
-
+        
         for(int i = 0; i < 256 ; i++) {
-            distance = Math.sqrt(
-                Math.pow(coordinates[i][0] - posX, 2) +
-                Math.pow(coordinates[i][1] - posY, 2) +
-                Math.pow(coordinates[i][2] - posZ, 2)
-            );
-            double MaxDistance;
-            switch(category[i]) {
-                case CONSUMABLES: 
-                    MaxDistance = Config.consumables_MaxDistance;
-                    break;
-                case FIREWORK:
-                    MaxDistance = Config.firework_MaxDistance;
-                    break;
-                default:
-                    MaxDistance = 2.0;
-                    break;
-            }
-            if(distance <= MaxDistance && sound.equals(sounds[i]) && timestamps[i] <= timestamps[cursor] && timestamps[i] != 0) {
-                cursor = i;
-                needed = true;
+            if(sounds[i] != null) {
+                distance = Math.sqrt(
+                    Math.pow(coordinates[i][0] - posX, 2) +
+                    Math.pow(coordinates[i][1] - posY, 2) +
+                    Math.pow(coordinates[i][2] - posZ, 2)
+                );
+                double MaxDistance;
+                switch(category[i]) {
+                    case CONSUMABLES: 
+                        MaxDistance = Config.consumables_MaxDistance;
+                        break;
+                    case FIREWORK:
+                        MaxDistance = Config.firework_MaxDistance;
+                        break;
+                    default:
+                        MaxDistance = 2.0;
+                        break;
+                }
+                if(distance <= MaxDistance && sound.equals(sounds[i]) && timestamps[i] <= timestamps[cursor] && timestamps[i] != 0) {
+                    cursor = i;
+                    needed = true;
+                }
             }
         }
         if(needed == true)
