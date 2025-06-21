@@ -5,23 +5,24 @@ This mod fixes that and therefore compensates for the ping.
 You can use ClienThings on your server to find out if a player is using **ClienThings**.
 
 Currently this mod compensates for :
-- Consumables (90%)
-- Elytras (95%)
-- Firework rocket (100%)
-- Cooldowns (100%)
+- Consumables (95%)
+- End Crystal (75%)
+- Elytras
+- Firework rocket
+- Cooldowns
+- Entity pose
 
 Coming Soon™ :
-- Interfaces
-- End Crystal Placement
+- Void damage
+- Interactions with blocks (Interfaces, Note block, Jukebox...)
+- Interactions with items
+- Interactions with entities
 - Game mode change
-- Sneaking state
 - Potion Effects
 - Tchat
 - Sounds
 - Crafting
 - Weapons (Bow/Crossbow, etc.)
-- Note block
-- Jukebox
 - Swap Items In Hands
 - Pick Block
 - Scaffolding
@@ -43,18 +44,20 @@ Coming Soon™ :
 #firework: Enables or disables firework prediction
 #firework_MaxDistance: Maximum distance (in blocks) between the client and the server for the firework sound to be ignored
 #firework_MaxTime: Maximum time (in ms) the server has to delete the firework
+#pose: Enables or disables pose prediction
 #optout: Enables or disables the opt-out
 
 consumables=true
-consumables_MaxDistance=0.3
+consumables_MaxDistance=0.2
 consumables_MaxTime=3200
 cooldowns=true
-debugMode=false
+debugMode=true
 elytras=true
 firework=true
 firework_MaxDistance=2.0
 firework_MaxTime=3200
 optout=true
+pose=true
 ```
 
 </details>
@@ -63,10 +66,7 @@ optout=true
 Instead of waiting for an indication from the server, the client will simulate it at the right time, without delay.
 
 ## Disclaimer
-This mod may be detected as a cheat by some anti-cheats. Use with caution on public servers.
-
-## Complementary
-If you use this mod, you might be interested by [No Bugs](https://modrinth.com/project/no-bugs)
+On a very high ping, this mod may be detected as a cheat by some anti-cheats. Use with caution on public servers. (Even though there is very little chance of being banned)
 
 ## Compatibility
 **ClienThings** should work on any client and server.
