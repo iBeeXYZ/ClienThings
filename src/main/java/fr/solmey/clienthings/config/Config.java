@@ -12,11 +12,11 @@ public class Config {
     public static long consumables_MaxTime = 6400;          // Maximum time before canceling end of consumption sounds in ms
     public static boolean cooldowns = true;                 // Enables or disables cooldowns optimization
     public static boolean crystals = true;                  // Enables or disables cooldowns optimization
-    public static long crystals_MaxTime = 800;              // Maximum time before canceling in ms
+    public static long crystals_MaxTime = 50;              // Maximum time before canceling in ms
     public static boolean debugMode = false;                // Debug mode (for developers)
-    public static boolean elytras = true;                   // Enables or disables elytra optimization
-    public static boolean firework = true;                  // Enables or disables firework optimization
-    public static double firework_MaxDistance = 3.0;        // Maximum distance between the firework sound location between the client and the server
+    public static boolean elytras = false;                   // Enables or disables elytra optimization
+    public static boolean firework = false;                  // Enables or disables firework optimization
+    public static double firework_MaxDistance = 0.0;        // Maximum distance between the firework sound location between the client and the server
     public static long firework_MaxTime = 3200;             // Maximum time before canceling in ms
     public static boolean pose = true;                      // Enables or disables pose optimization
     //public static boolean falldamageExperimental = false; // Enables or disables the experimental fall damage optimization
