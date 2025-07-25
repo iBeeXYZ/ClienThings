@@ -12,7 +12,7 @@ public class Config {
     public static long consumables_MaxTime = 6400;          // Maximum time before canceling end of consumption sounds in ms
     public static boolean cooldowns = true;                 // Enables or disables cooldowns optimization
     public static boolean crystals = true;                  // Enables or disables cooldowns optimization
-    public static long crystals_MaxTime = 50;              // Maximum time before canceling in ms
+    public static long crystals_MaxTime = 1600;              // Maximum time before canceling in ms
     public static boolean debugMode = false;                // Debug mode (for developers)
     public static boolean elytras = false;                   // Enables or disables elytra optimization
     public static boolean firework = false;                  // Enables or disables firework optimization
